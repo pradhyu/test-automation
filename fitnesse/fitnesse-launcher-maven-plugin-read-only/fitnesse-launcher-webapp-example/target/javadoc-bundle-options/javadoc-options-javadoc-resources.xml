@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<javadocOptions>
+  <docletArtifacts>
+    <docletArtifact />
+  </docletArtifacts>
+  <tagletArtifacts>
+    <tagletArtifact />
+    <tagletArtifact>
+      <groupId>org.apache.maven.plugin-tools</groupId>
+      <artifactId>maven-plugin-tools-javadoc</artifactId>
+      <version>3.2</version>
+    </tagletArtifact>
+  </tagletArtifacts>
+  <links>
+    <link>http://java.sun.com/javase/6/docs/api/</link>
+    <link>http://fitnesse-launcher-maven-plugin.googlecode.com/svn/maven/site/fitnesse-apidocs/</link>
+    <link>http://maven.apache.org/ref/3.2.2/maven-plugin-api/apidocs/</link>
+    <link>http://maven.apache.org/ref/3.2.2/maven-artifact/apidocs/</link>
+    <link>http://maven.apache.org/surefire/maven-surefire-common/apidocs/</link>
+    <link>http://plexus.codehaus.org/plexus-containers/plexus-container-default-1.0-alpha-9-stable/apidocs/</link>
+  </links>
+  <javadocResourcesDirectory>src/main/javadoc</javadocResourcesDirectory>
+</javadocOptions>

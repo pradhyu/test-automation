@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/334/trunk/fitnesse-launcher-maven-plugin/src/site/violations
+END
+checkstyle.xml
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/!svn/ver/334/trunk/fitnesse-launcher-maven-plugin/src/site/violations/checkstyle.xml
+END
+pmd-ruleset.xml
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/!svn/ver/334/trunk/fitnesse-launcher-maven-plugin/src/site/violations/pmd-ruleset.xml
+END
+findbugs-exclude.xml
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/!svn/ver/334/trunk/fitnesse-launcher-maven-plugin/src/site/violations/findbugs-exclude.xml
+END
+checkstyle-suppressions.xml
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/!svn/ver/334/trunk/fitnesse-launcher-maven-plugin/src/site/violations/checkstyle-suppressions.xml
+END

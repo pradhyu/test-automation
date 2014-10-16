@@ -1,0 +1,430 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>AbstractFitNesseMojo.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="right"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">FitNesse Launcher Maven Plugin</a> &gt; <a href="index.html" class="el_package">uk.co.javahelp.maven.plugin.fitnesse.mojo</a> &gt; <span class="el_source">AbstractFitNesseMojo.java</span></div><h1>AbstractFitNesseMojo.java</h1><pre class="source lang-java linenums">package uk.co.javahelp.maven.plugin.fitnesse.mojo;
+
+import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.Collections;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Properties;
+import java.util.Set;
+
+import org.apache.maven.artifact.Artifact;
+import org.apache.maven.artifact.ArtifactUtils;
+import org.apache.maven.artifact.repository.ArtifactRepository;
+import org.apache.maven.artifact.resolver.ArtifactResolutionRequest;
+import org.apache.maven.artifact.resolver.ArtifactResolutionResult;
+import org.apache.maven.artifact.resolver.ArtifactResolver;
+import org.apache.maven.execution.MavenSession;
+import org.apache.maven.model.Dependency;
+import org.apache.maven.model.Plugin;
+import org.apache.maven.plugin.MojoExecutionException;
+import org.apache.maven.plugin.MojoFailureException;
+import org.apache.maven.plugin.descriptor.PluginDescriptor;
+import org.apache.maven.project.MavenProject;
+import org.codehaus.plexus.classworlds.realm.ClassRealm;
+
+import uk.co.javahelp.maven.plugin.artifact.resolver.OptionalArtifactFilter;
+import uk.co.javahelp.maven.plugin.fitnesse.util.FitNesseHelper;
+import uk.co.javahelp.maven.plugin.fitnesse.util.Utils;
+
+<span class="nc" id="L33">public abstract class AbstractFitNesseMojo extends org.apache.maven.plugin.AbstractMojo {</span>
+    
+    /**
+     * Used to look up Artifacts in the remote repository.
+     * 
+     * @component role=&quot;org.apache.maven.artifact.resolver.ArtifactResolver&quot;
+     * @readonly
+     * @required
+     */
+    protected ArtifactResolver resolver;
+
+    /**
+     * Location of the local repository.
+     *
+     * @parameter property=&quot;localRepository&quot;
+     * @readonly
+     * @required
+     */
+    protected ArtifactRepository localRepository;
+
+    /**
+     * List of Remote Repositories used by the resolver
+     *
+     * @parameter property=&quot;project.remoteArtifactRepositories&quot;
+     * @readonly
+     * @required
+     */
+    protected List&lt;ArtifactRepository&gt; remoteArtifactRepositories;
+    
+    /**
+     * Maven project, to be injected by Maven itself.
+     * @parameter property=&quot;project&quot;
+     * @readonly
+     * @required
+     */
+    protected MavenProject project;
+    
+    /**
+     * The Maven Session Object
+     * @parameter property=&quot;session&quot;
+     * @readonly
+     * @required
+     */
+    protected MavenSession session;
+    
+    /**
+     * @parameter property=&quot;plugin&quot;
+     * @readonly
+     * @required
+     */
+    protected PluginDescriptor pluginDescriptor;
+
+    /**
+     * @parameter property=&quot;fitnesse.port&quot; default-value=&quot;9123&quot;
+     */
+    protected Integer port;
+
+    /**
+     * @parameter property=&quot;fitnesse.test.resource.directory&quot; default-value=&quot;src/test/fitnesse&quot;
+     */
+    protected String testResourceDirectory;
+
+    /**
+     * @parameter property=&quot;fitnesse.working&quot; default-value=&quot;${project.build.directory}/fitnesse&quot;
+     */
+    protected String workingDir;
+
+    /**
+     * @parameter property=&quot;fitnesse.root&quot; default-value=&quot;FitNesseRoot&quot;
+     */
+    protected String root;
+
+    /**
+     * @parameter property=&quot;fitnesse.logDir&quot;
+     */
+    protected String logDir;
+
+    /**
+     * fitnesse-launcher-maven-plugin unpacks a fresh copy of FitNesse under /target;
+     * Only your project specific FitNesse tests need go under src/test/fitnesse.
+     * By setting 'createSymLink' to 'true', fitnesse-launcher-maven-plugin will
+     * create a FitNesse SymLink directly to your test suite under src/test/fitnesse.
+     * This is most useful when developing tests in 'wiki' mode,
+     * as then you can directly scm commit your changes.
+     * If you prefer to copy-resources from src/test/fitnesse into /target/fitnesse,
+     * let 'createSymLink' be 'false'.
+     * @see &lt;a href=&quot;http://fitnesse.org/FitNesse.FullReferenceGuide.UserGuide.FitNesseWiki.SymbolicLinks&quot;&gt;What are Symbolic Links&lt;/a&gt;
+     * @parameter property=&quot;fitnesse.createSymLink&quot; default-value=&quot;true&quot;
+     */
+    protected boolean createSymLink;
+
+    /**
+     * This is where test results go.
+     * 
+     * @parameter property=&quot;fitnesse.results&quot; default-value=&quot;${project.build.directory}/fitnesse/results&quot;
+     * @required
+     */
+    protected File resultsDir;
+
+    /**
+     * This is where reports go.
+     * 
+     * @parameter property=&quot;fitnesse.reports&quot; default-value=&quot;${project.build.directory}/fitnesse/reports&quot;
+     * @required
+     */
+    protected File reportsDir;
+
+    /**
+     * The summary file to write integration test results to.
+     * 
+     * @parameter property=&quot;fitnesse.summary.file&quot; default-value=&quot;${project.build.directory}/fitnesse/results/failsafe-summary.xml&quot;
+     * @required
+     */
+    protected File summaryFile;
+    
+    /**
+     * @parameter property=&quot;fitnesse.launches&quot;
+     */
+    protected Launch[] launches;
+
+    /**
+     * @parameter property=&quot;fitnesse.suite&quot;
+     */
+    protected String suite;
+
+    /**
+     * @parameter property=&quot;fitnesse.test&quot;
+     */
+    protected String test;
+
+    /**
+     * @see &lt;a href=&quot;http://fitnesse.org/FitNesse.FullReferenceGuide.UserGuide.WritingAcceptanceTests.TestSuites.TagsAndFilters&quot;&gt;Suite Tags&lt;/a&gt;
+     * @parameter property=&quot;fitnesse.suiteFilter&quot;
+     */
+    protected String suiteFilter;
+
+    /**
+     * @see &lt;a href=&quot;http://fitnesse.org/FitNesse.FullReferenceGuide.UserGuide.WritingAcceptanceTests.TestSuites.TagsAndFilters&quot;&gt;Suite Tags&lt;/a&gt;
+     * @parameter property=&quot;fitnesse.excludeSuiteFilter&quot;
+     */
+    protected String excludeSuiteFilter;
+    
+    /**
+     * @see &lt;a href=&quot;http://fitnesse.org/FitNesse.FullReferenceGuide.UserGuide.WritingAcceptanceTests.TestSuites.TagsAndFilters&quot;&gt;Suite Tags&lt;/a&gt;
+     * @parameter property=&quot;fitnesse.runTestsMatchingAllTags&quot;
+     */
+    protected String runTestsMatchingAllTags;
+    
+    /**
+     * @parameter property=&quot;fitnesse.useProjectDependencies&quot;
+     */
+    protected Set&lt;String&gt; useProjectDependencies;
+    
+    /**
+     * @parameter property=&quot;fitnesse.failIfNoTests&quot; default-value=true
+     */
+    protected Boolean failIfNoTests;
+    
+    /**
+     * Should fitnesse-launcher-maven-plugin exclude optional transitive dependencies,
+     * when configured using &amp;lt;useProjectDependencies&amp;gt; ?
+     * &lt;br&gt;
+     * Note: This may result in duplicates or conflicts for transitive dependencies.
+     * &lt;br&gt;
+     * See Issue #27.
+     * &lt;br&gt;
+     * Defaults to true. 
+     * &lt;br&gt;
+     * &lt;strong&gt;@Deprecated&lt;/strong&gt;
+     * @parameter property=&quot;fitnesse.excludeOptionalDependencies&quot; default-value=&quot;true&quot;
+     */
+<span class="nc" id="L204">    @Deprecated</span>
+    protected boolean excludeOptionalDependencies = true;
+
+    protected FitNesseHelper fitNesseHelper;
+    
+    protected abstract void executeInternal(Launch... executeLaunches)
+        throws MojoExecutionException, MojoFailureException;
+
+	@Override
+    public void execute() throws MojoExecutionException, MojoFailureException {
+<span class="nc" id="L214">    	this.fitNesseHelper = new FitNesseHelper(getLog());</span>
+<span class="nc" id="L215">        exportProperties();</span>
+<span class="nc" id="L216">        executeInternal(launches());</span>
+<span class="nc" id="L217">    }</span>
+	
+	/**
+	 * Pre-1.4.0 config is senior, as this allows easy override from command line using -D
+	 */
+	protected Launch[] launches() {
+<span class="nc bnc" id="L223" title="All 4 branches missed.">        if(this.suite == null &amp;&amp; this.test == null) {</span>
+        	// if this.launches.length == 0, it won't throw exception, just nothing to run 
+<span class="nc" id="L225">            return this.launches;</span>
+        } else {
+<span class="nc" id="L227">            return new Launch[] { </span>
+                new Launch(this.suite, this.test, this.suiteFilter, this.excludeSuiteFilter, this.runTestsMatchingAllTags)};
+        }
+	}
+
+    private static final String LOG_LINE = &quot;------------------------------------------------------------------------&quot;;
+        
+    protected final void exportProperties() {
+<span class="nc" id="L235">        final Properties projectProperties = this.project.getProperties();</span>
+<span class="nc" id="L236">        getLog().info(LOG_LINE);</span>
+<span class="nc" id="L237">        final String mavenClasspath = calcWikiFormatClasspath();</span>
+<span class="nc" id="L238">        setSystemProperty(&quot;maven.classpath&quot;, mavenClasspath);</span>
+
+        // If a System property already exists, it has priority;
+        // That way we can override with a -D on the command line
+<span class="nc bnc" id="L242" title="All 2 branches missed.">        for(String key : projectProperties.stringPropertyNames()) {</span>
+<span class="nc" id="L243">            final String value = this.session.getSystemProperties()</span>
+                .getProperty(key, projectProperties.getProperty(key));
+<span class="nc" id="L245">            setSystemProperty(key, value);</span>
+<span class="nc" id="L246">        }</span>
+<span class="nc" id="L247">        setSystemProperty(&quot;artifact&quot;, this.project.getArtifactId());</span>
+<span class="nc" id="L248">        setSystemProperty(&quot;version&quot;, this.project.getVersion());</span>
+        try {
+<span class="nc" id="L250">            final String basedir = this.project.getBasedir().getCanonicalPath();</span>
+<span class="nc" id="L251">            setSystemProperty(&quot;basedir&quot;, basedir);</span>
+<span class="nc" id="L252">        } catch (Exception e) {</span>
+<span class="nc" id="L253">        	getLog().error(e);</span>
+<span class="nc" id="L254">        }</span>
+<span class="nc" id="L255">        getLog().info(LOG_LINE);</span>
+<span class="nc" id="L256">    }</span>
+
+    protected final void setSystemProperty(final String key, final String value) {
+<span class="nc bnc" id="L259" title="All 4 branches missed.">        if(!Utils.isBlank(key) &amp;&amp; !Utils.isBlank(value)) {</span>
+<span class="nc" id="L260">            getLog().info(String.format(&quot;Setting FitNesse variable [%s] to [%s]&quot;, key, value));</span>
+<span class="nc" id="L261">            System.setProperty(key, value);</span>
+        }
+<span class="nc" id="L263">    }</span>
+
+    protected final String calcWikiFormatClasspath() {
+<span class="nc" id="L266">        final Set&lt;Artifact&gt; artifacts = buildArtifactSet();</span>
+<span class="nc" id="L267">        return addArtifactsToClasspath(artifacts);</span>
+    }
+
+	private Set&lt;Artifact&gt; buildArtifactSet() {
+<span class="nc" id="L271">        final Set&lt;Artifact&gt; artifacts = new LinkedHashSet&lt;Artifact&gt;();</span>
+<span class="nc" id="L272">        addPluginArtifacts(artifacts);</span>
+<span class="nc" id="L273">        addProjectArtifacts(artifacts);</span>
+<span class="nc" id="L274">       	return artifacts;</span>
+    }
+
+	private void addPluginArtifacts(final Set&lt;Artifact&gt; artifacts) {
+<span class="nc" id="L278">   		final Map&lt;String, Artifact&gt; dependencyArtifactMap = this.pluginDescriptor.getArtifactMap(); </span>
+        // We should always have FitNesse itself on the FitNesse classpath!
+<span class="nc" id="L280">       	artifacts.addAll(resolveDependencyKey(FitNesse.artifactKey, dependencyArtifactMap));</span>
+                
+       	// We check plugin for null to allow use in standalone mode
+<span class="nc" id="L283">        final Plugin fitnessePlugin = this.project.getPlugin(this.pluginDescriptor.getPluginLookupKey());</span>
+<span class="nc bnc" id="L284" title="All 2 branches missed.">       	if(fitnessePlugin == null) {</span>
+<span class="nc" id="L285">            getLog().info(&quot;Running standalone - launching vanilla FitNesse&quot;);</span>
+       	} else {
+<span class="nc" id="L287">            final List&lt;Dependency&gt; dependecies = fitnessePlugin.getDependencies();</span>
+<span class="nc bnc" id="L288" title="All 4 branches missed.">            if(dependecies != null &amp;&amp; !dependecies.isEmpty()) {</span>
+<span class="nc" id="L289">                getLog().info(&quot;Using dependencies specified in plugin config&quot;);</span>
+<span class="nc bnc" id="L290" title="All 2 branches missed.">        	    for(Dependency dependency : dependecies) {</span>
+<span class="nc" id="L291">        			final String key = dependency.getGroupId() + &quot;:&quot; + dependency.getArtifactId();</span>
+<span class="nc" id="L292">        			artifacts.addAll(resolveDependencyKey(key, dependencyArtifactMap));</span>
+<span class="nc" id="L293">        		}</span>
+        	}
+        }
+<span class="nc" id="L296">    }</span>
+
+    /**
+     * From {@link org.apache.maven.project.MavenProject#getArtifacts()}:
+     * All dependencies that this project has, including transitive ones.
+     * Contents are lazily populated, so depending on what phases have run
+     * dependencies in some scopes won't be included. eg. if only compile
+     * phase has run, dependencies with scope test won't be included.
+     * @see org.apache.maven.project.MavenProject#getArtifacts()
+     * See &lt;a href=&quot;http://maven.apache.org/developers/mojo-api-specification.html#The_Descriptor_and_Annotations&quot;&gt;requiresDependencyResolution&lt;/a&gt;
+     */
+	private void addProjectArtifacts(final Set&lt;Artifact&gt; artifacts) {
+<span class="nc bnc" id="L308" title="All 2 branches missed.">       	if(!this.useProjectDependencies.isEmpty()) {</span>
+<span class="nc" id="L309">            getLog().info(&quot;Using dependencies in the following scopes: &quot; + this.useProjectDependencies);</span>
+<span class="nc bnc" id="L310" title="All 2 branches missed.">            if(!this.excludeOptionalDependencies) {</span>
+<span class="nc" id="L311">            	getLog().info(&quot;Including transitive dependencies which are optional&quot;);</span>
+<span class="nc" id="L312">                resolveProjectDependencies(artifacts);</span>
+        	} else {
+<span class="nc bnc" id="L314" title="All 2 branches missed.">		        for(Artifact artifact : this.project.getArtifacts()) {</span>
+<span class="nc bnc" id="L315" title="All 2 branches missed.">   	    			if(this.useProjectDependencies.contains(artifact.getScope())) {</span>
+<span class="nc" id="L316">       					artifacts.add(artifact);</span>
+       				}
+   				}
+        	}
+       	}
+<span class="nc" id="L321">    }</span>
+
+	private String addArtifactsToClasspath(final Set&lt;Artifact&gt; artifacts) {
+<span class="nc" id="L324">        final StringBuilder wikiFormatClasspath = new StringBuilder(&quot;\n&quot;);</span>
+<span class="nc" id="L325">		final ClassRealm realm = this.pluginDescriptor.getClassRealm();</span>
+<span class="nc" id="L326">	    setupLocalTestClasspath(realm, wikiFormatClasspath);</span>
+<span class="nc bnc" id="L327" title="All 2 branches missed.">        for (Artifact artifact : artifacts) {</span>
+<span class="nc" id="L328">		    final File artifactFile = artifact.getFile();</span>
+<span class="nc bnc" id="L329" title="All 2 branches missed.">            if(artifactFile != null) {</span>
+<span class="nc" id="L330">                getLog().debug(String.format(&quot;Adding artifact to FitNesse classpath [%s]&quot;, artifact));</span>
+<span class="nc" id="L331">				this.fitNesseHelper.formatAndAppendClasspathArtifact(wikiFormatClasspath, artifact);</span>
+<span class="nc" id="L332">    	        addToRealm(realm, artifactFile);</span>
+            } else {
+<span class="nc" id="L334">                getLog().warn(String.format(&quot;File for artifact [%s] is not found&quot;, artifact));</span>
+            }
+<span class="nc" id="L336">        }</span>
+<span class="nc" id="L337">        return wikiFormatClasspath.toString();</span>
+    }
+
+    /**
+     * See Issue #27. This method may result in duplicates or conflicts for transitive dependencies.
+     * Better to use correct @requiresDependencyResolution for mojo, in combination with project.getArtifacts().
+     * See &lt;a href=&quot;http://maven.apache.org/developers/mojo-api-specification.html#The_Descriptor_and_Annotations&quot;&gt;requiresDependencyResolution&lt;/a&gt;
+     */
+    @Deprecated
+	private void resolveProjectDependencies(final Set&lt;Artifact&gt; artifacts) {
+<span class="nc" id="L347">		final Map&lt;String, Artifact&gt; dependencyArtifactMap = ArtifactUtils.artifactMapByVersionlessId(this.project.getDependencyArtifacts());</span>
+<span class="nc" id="L348">       	final List&lt;Dependency&gt; dependecies = this.project.getDependencies();</span>
+<span class="nc bnc" id="L349" title="All 2 branches missed.">		for(Dependency dependency : dependecies) {</span>
+<span class="nc" id="L350">	    	final String key = dependency.getGroupId() + &quot;:&quot; + dependency.getArtifactId();</span>
+<span class="nc bnc" id="L351" title="All 2 branches missed.">   	    	if(this.useProjectDependencies.contains(dependency.getScope())) {</span>
+<span class="nc" id="L352">       			artifacts.addAll(resolveDependencyKey(key, dependencyArtifactMap));</span>
+       		}
+<span class="nc" id="L354">   		}</span>
+<span class="nc" id="L355">    }</span>
+
+	private void setupLocalTestClasspath(final ClassRealm realm, final StringBuilder wikiFormatClasspath) {
+<span class="nc" id="L358">		setupLocalTestClasspath(realm, wikiFormatClasspath, handleWhitespace(this.project.getBuild().getTestOutputDirectory()));</span>
+<span class="nc" id="L359">		setupLocalTestClasspath(realm, wikiFormatClasspath, handleWhitespace(this.project.getBuild().getOutputDirectory()));</span>
+<span class="nc" id="L360">    }</span>
+	
+	private String handleWhitespace(final String directory) {
+<span class="nc bnc" id="L363" title="All 2 branches missed.">		if(Utils.whitespaceSituation(directory)) {</span>
+            try {
+<span class="nc" id="L365">        		final String relativePath = Utils.getRelativePath(new File(&quot;.&quot;), new File(directory));</span>
+<span class="nc bnc" id="L366" title="All 2 branches missed.">        		if(!Utils.whitespaceSituation(relativePath)) {</span>
+<span class="nc" id="L367">            		getLog().warn(Utils.whitespaceWarning(directory, &quot;Attempting relative path workaround&quot;));</span>
+<span class="nc" id="L368">            		return relativePath;</span>
+        		}
+<span class="nc" id="L370">			} catch (final IOException e) {</span>
+<span class="nc" id="L371">            	getLog().error(e);</span>
+<span class="nc" id="L372">			}</span>
+		}
+<span class="nc" id="L374">		return directory;</span>
+	}
+
+	private void setupLocalTestClasspath(final ClassRealm realm,
+			final StringBuilder wikiFormatClasspath,
+			final String testClasspathElement) {
+
+<span class="nc" id="L381">        getLog().debug(String.format(&quot;Adding element to FitNesse classpath [%s]&quot;, testClasspathElement));</span>
+<span class="nc" id="L382">		this.fitNesseHelper.formatAndAppendClasspath(wikiFormatClasspath, testClasspathElement);</span>
+<span class="nc" id="L383">        addToRealm(realm,  new File(testClasspathElement));</span>
+<span class="nc" id="L384">	}</span>
+	
+	private void addToRealm(final ClassRealm realm, final File file) {
+	    try {
+<span class="nc" id="L388">			final URL url = file.toURI().toURL();</span>
+<span class="nc" id="L389">            getLog().debug(String.format(&quot;Adding URL to ClassRealm [%s]&quot;, url));</span>
+<span class="nc" id="L390">			realm.addURL(url);</span>
+<span class="nc" id="L391">		} catch (final MalformedURLException e) {</span>
+<span class="nc" id="L392">            getLog().error(e);</span>
+<span class="nc" id="L393">		}</span>
+<span class="nc" id="L394">	}</span>
+
+    private Set&lt;Artifact&gt; resolveDependencyKey(final String key, final Map&lt;String, Artifact&gt; artifactMap) {
+<span class="nc" id="L397">       	final Artifact artifact = artifactMap.get(key);</span>
+<span class="nc bnc" id="L398" title="All 2 branches missed.">       	if(artifact == null) {</span>
+<span class="nc" id="L399">            getLog().error(String.format(&quot;Lookup for artifact [%s] failed&quot;, key));</span>
+<span class="nc" id="L400">            return Collections.emptySet();</span>
+       	}
+<span class="nc" id="L402">        return resolveArtifactTransitively(artifact);</span>
+    }
+
+    private Set&lt;Artifact&gt; resolveArtifactTransitively(final Artifact artifact) {
+<span class="nc" id="L406">        final ArtifactResolutionRequest request = new ArtifactResolutionRequest()</span>
+            .setArtifact( artifact )
+			.setResolveRoot( true )
+			.setResolveTransitively( true )
+			.setRemoteRepositories( this.remoteArtifactRepositories )
+			.setLocalRepository( this.localRepository );
+<span class="nc bnc" id="L412" title="All 2 branches missed.">        if(this.excludeOptionalDependencies) {</span>
+<span class="nc" id="L413">			request.setCollectionFilter(OptionalArtifactFilter.INSTANCE);</span>
+        }
+<span class="nc" id="L415">		final ArtifactResolutionResult result = this.resolver.resolve(request);</span>
+<span class="nc bnc" id="L416" title="All 2 branches missed.">        if(!result.isSuccess()) {</span>
+<span class="nc bnc" id="L417" title="All 2 branches missed.">            for(Artifact missing : result.getMissingArtifacts()) {</span>
+<span class="nc" id="L418">    			getLog().error(String.format(&quot;Could not resolve artifact: [%s]&quot;, missing));</span>
+        	}
+<span class="nc bnc" id="L420" title="All 4 branches missed.">        	if(result.hasExceptions() &amp;&amp; getLog().isDebugEnabled()) {</span>
+<span class="nc bnc" id="L421" title="All 2 branches missed.">            	for(Exception exception : result.getExceptions()) {</span>
+<span class="nc" id="L422">    		    	getLog().debug(exception);</span>
+            	}
+        	}
+        }
+<span class="nc" id="L426">   		final Set&lt;Artifact&gt; dependencies = result.getArtifacts();</span>
+<span class="nc" id="L427">		return dependencies;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.6.0.201210061924</span></div></body></html>

@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<testResults>
+  <FitNesseVersion>v20130530</FitNesseVersion>
+  <rootPath>FitTest</rootPath>
+    <result>
+    <counts>
+      <right>2</right>
+      <wrong>0</wrong>
+      <ignores>0</ignores>
+      <exceptions>0</exceptions>
+    </counts>
+    <runTimeInMillis>6</runTimeInMillis>
+    <content>&lt;div class="toc1"&gt;
+	&lt;div class="contents"&gt;
+		&lt;b&gt;Contents:&lt;/b&gt;
+		&lt;ul/&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+&lt;br/&gt;&lt;br/&gt;&lt;div class="collapsible closed"&gt;&lt;ul&gt;&lt;li&gt;&lt;a href='#' class='expandall'&gt;Expand All&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href='#' class='collapseall'&gt;Collapse All&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;
+	&lt;p class="title"&gt;&lt;b&gt;Variables Defined&lt;/b&gt;&lt;/p&gt;
+	&lt;div&gt;&lt;span class="meta"&gt;variable defined: TEST_SYSTEM=fit&lt;/span&gt;
+&lt;br/&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;br/&gt;&lt;br/&gt;&lt;div class="collapsible closed"&gt;&lt;ul&gt;&lt;li&gt;&lt;a href='#' class='expandall'&gt;Expand All&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href='#' class='collapseall'&gt;Collapse All&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;
+	&lt;p class="title"&gt;&lt;b&gt;Classpath&lt;/b&gt;&lt;/p&gt;
+	&lt;div&gt;&lt;br/&gt;&lt;span class="meta"&gt;classpath: /home/adminuser/java/test/fitnesse/fitnesse-launcher-maven-plugin-read-only/fitnesse-launcher-spring-example/target/test-classes&lt;/span&gt;&lt;br/&gt;&lt;span class="meta"&gt;classpath: /home/adminuser/java/test/fitnesse/fitnesse-launcher-maven-plugin-read-only/fitnesse-launcher-spring-example/target/classes&lt;/span&gt;&lt;br/&gt;&lt;span class="meta"&gt;classpath: /home/adminuser/.m2/repository/org/fitnesse/fitnesse/20130530/fitnesse-20130530.jar&lt;/span&gt;&lt;br/&gt;&lt;span class="meta"&gt;classpath: /home/adminuser/.m2/repository/org/htmlparser/htmlparser/2.1/htmlparser-2.1.jar&lt;/span&gt;&lt;br/&gt;&lt;span class="meta"&gt;classpath: /home/adminuser/.m2/repository/org/htmlparser/htmllexer/2.1/htmllexer-2.1.jar&lt;/span&gt;&lt;br/&gt;&lt;span class="meta"&gt;classpath: /home/adminuser/.m2/repository/org/apache/velocity/velocity/1.7/velocity-1.7.jar&lt;/span&gt;&lt;br/&gt;&lt;span class="meta"&gt;classpath: /home/adminuser/.m2/repository/commons-collections/commons-collections/3.2.1/commons-collections-3.2.1.jar&lt;/span&gt;&lt;br/&gt;&lt;span class="meta"&gt;classpath: /home/adminuser/.m2/repository/commons-lang/commons-lang/2.4/commons-lang-2.4.jar&lt;/span&gt;&lt;br/&gt;&lt;span class="meta"&gt;classpath: /home/adminuser/.m2/repository/org/json/json/20090211/json-20090211.jar&lt;/span&gt;&lt;br/&gt;&lt;span class="meta"&gt;classpath: /home/adminuser/.m2/repository/com/googlecode/java-diff-utils/diffutils/1.2.1/diffutils-1.2.1.jar&lt;/span&gt;&lt;br/&gt;&lt;span class="meta"&gt;classpath: /home/adminuser/.m2/repository/org/slf4j/slf4j-simple/1.7.2/slf4j-simple-1.7.2.jar&lt;/span&gt;&lt;br/&gt;&lt;span class="meta"&gt;classpath: /home/adminuser/.m2/repository/org/slf4j/slf4j-api/1.7.2/slf4j-api-1.7.2.jar&lt;/span&gt;&lt;br/&gt;&lt;span class="meta"&gt;classpath: /home/adminuser/.m2/repository/org/springframework/spring-context/3.2.0.RELEASE/spring-context-3.2.0.RELEASE.jar&lt;/span&gt;&lt;br/&gt;&lt;span class="meta"&gt;classpath: /home/adminuser/.m2/repository/org/springframework/spring-core/3.2.0.RELEASE/spring-core-3.2.0.RELEASE.jar&lt;/span&gt;&lt;br/&gt;&lt;span class="meta"&gt;classpath: /home/adminuser/.m2/repository/commons-logging/commons-logging/1.1.1/commons-logging-1.1.1.jar&lt;/span&gt;&lt;br/&gt;&lt;span class="meta"&gt;classpath: /home/adminuser/.m2/repository/org/springframework/spring-aop/3.2.0.RELEASE/spring-aop-3.2.0.RELEASE.jar&lt;/span&gt;&lt;br/&gt;&lt;span class="meta"&gt;classpath: /home/adminuser/.m2/repository/aopalliance/aopalliance/1.0/aopalliance-1.0.jar&lt;/span&gt;&lt;br/&gt;&lt;span class="meta"&gt;classpath: /home/adminuser/.m2/repository/org/springframework/spring-expression/3.2.0.RELEASE/spring-expression-3.2.0.RELEASE.jar&lt;/span&gt;&lt;br/&gt;&lt;span class="meta"&gt;classpath: /home/adminuser/.m2/repository/org/springframework/spring-beans/3.2.0.RELEASE/spring-beans-3.2.0.RELEASE.jar&lt;/span&gt;&lt;br/&gt;&lt;br/&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;&lt;table&gt;
+	&lt;tr&gt;
+		&lt;td colspan="3"&gt;uk.co.javahelp.fitnesse.fit.SpringColumnFixture&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;bean name&lt;/td&gt;
+		&lt;td&gt;method name&lt;/td&gt;
+		&lt;td&gt;exec?&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;buyMilk1&lt;/td&gt;
+		&lt;td&gt;goToStore&lt;/td&gt;
+		&lt;td class="pass"&gt;no&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;buyMilk2&lt;/td&gt;
+		&lt;td&gt;goToStore&lt;/td&gt;
+		&lt;td class="pass"&gt;yes&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+&lt;br/&gt;</content>
+    <relativePageName>FitTest</relativePageName>
+    
+    
+    
+  </result>
+  
+    <finalCounts>
+    <right>0</right>
+    <wrong>0</wrong>
+    <ignores>0</ignores>
+    <exceptions>0</exceptions>
+  </finalCounts>
+  <totalRunTimeInMillis>0</totalRunTimeInMillis>
+  
+</testResults>
+

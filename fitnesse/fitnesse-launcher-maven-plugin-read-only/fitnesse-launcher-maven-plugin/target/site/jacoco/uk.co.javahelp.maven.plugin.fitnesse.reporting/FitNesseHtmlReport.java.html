@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>FitNesseHtmlReport.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="right"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">FitNesse Launcher Maven Plugin</a> &gt; <a href="index.html" class="el_package">uk.co.javahelp.maven.plugin.fitnesse.reporting</a> &gt; <span class="el_source">FitNesseHtmlReport.java</span></div><h1>FitNesseHtmlReport.java</h1><pre class="source lang-java linenums">package uk.co.javahelp.maven.plugin.fitnesse.reporting;
+
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.Reader;
+import java.util.List;
+import java.util.Locale;
+import java.util.ResourceBundle;
+
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
+import org.apache.maven.doxia.sink.Sink;
+import org.apache.maven.doxia.sink.SinkFactory;
+import org.apache.maven.doxia.siterenderer.Renderer;
+import org.apache.maven.project.MavenProject;
+import org.apache.maven.reporting.AbstractMavenReport;
+import org.apache.maven.reporting.MavenReportException;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
+/**
+ * @goal html-report
+ * @phase site
+ */
+<span class="nc" id="L28">public class FitNesseHtmlReport extends AbstractMavenReport {</span>
+	
+	/**
+	 * See fitnesse-html-report.properties
+	 */
+	private static final String OUTPUT_NAME = &quot;fitnesse-html-report&quot;;
+	
+    /**
+     * Directory where reports will go.
+     *
+     * @parameter default-value=&quot;${project.reporting.outputDirectory}&quot;
+     * @required
+     * @readonly
+     */
+    private String outputDirectory;
+ 
+    /**
+     * @parameter default-value=&quot;${project}&quot;
+     * @required
+     * @readonly
+     */
+    private MavenProject project;
+ 
+    /**
+     * @component
+     * @required
+     * @readonly
+     */
+    private Renderer siteRenderer;
+
+    /**
+     * This is where reports go.
+     * 
+     * @parameter property=&quot;fitnesse.reports&quot; default-value=&quot;${project.build.directory}/fitnesse/reports&quot;
+     * @required
+     */
+    protected File reportsDir;
+
+	@Override
+	public String getOutputName() {
+<span class="nc" id="L68">		return OUTPUT_NAME;</span>
+	}
+
+	@Override
+	public String getName(Locale locale) {
+<span class="nc" id="L73">		return getBundle( locale ).getString( &quot;report.fitnesse.name&quot; );</span>
+	}
+
+	@Override
+	public String getDescription(Locale locale) {
+<span class="nc" id="L78">		return getBundle( locale ).getString( &quot;report.fitnesse.description&quot; );</span>
+	}
+
+	@Override
+	protected Renderer getSiteRenderer() {
+<span class="nc" id="L83">		return this.siteRenderer;</span>
+	}
+
+	@Override
+	protected String getOutputDirectory() {
+<span class="nc" id="L88">		return this.outputDirectory;</span>
+	}
+
+	@Override
+	protected MavenProject getProject() {
+<span class="nc" id="L93">		return this.project;</span>
+	}
+	
+	private ResourceBundle getBundle( Locale locale ) {
+<span class="nc" id="L97">	    return ResourceBundle.getBundle( OUTPUT_NAME, locale, this.getClass().getClassLoader() );</span>
+	}
+
+	/**
+	 * Be aware of http://maven.apache.org/plugin-developers/common-bugs.html#Determining_the_Output_Directory_for_a_Site_Report
+	 */
+	@Override
+	protected void executeReport(Locale locale) throws MavenReportException {
+        try {
+<span class="nc" id="L106">			String[] reports = this.reportsDir.list(HtmlFilter.INSTANCE);</span>
+			//boolean styleDone = false;
+				
+<span class="nc" id="L109">			ResourceBundle bundle = getBundle( locale );</span>
+<span class="nc" id="L110">			Sink sink = this.getSink();</span>
+<span class="nc" id="L111">            sinkBeginReport(sink, bundle);</span>
+<span class="nc" id="L112">            sink.sectionTitle1();</span>
+<span class="nc" id="L113">        	sink.text( bundle.getString( &quot;report.fitnesse.name&quot; ) );</span>
+<span class="nc" id="L114">        	sink.sectionTitle1_();</span>
+<span class="nc bnc" id="L115" title="All 2 branches missed.">			for(String report : reports) {</span>
+                //String html = html(report);
+<span class="nc" id="L117">                Document document = Jsoup.parse(new File(this.reportsDir, report), null);</span>
+<span class="nc" id="L118">                Elements tables = document.getElementsByTag(&quot;table&quot;);</span>
+                // Is it a top-level index page?
+<span class="nc bnc" id="L120" title="All 4 branches missed.">                if(tables.size() == 1 &amp;&amp;</span>
+                    testTdElements(tables.get(0).getElementsByTag(&quot;td&quot;), &quot;name&quot;, &quot;right&quot;, &quot;wrong&quot;, &quot;exceptions&quot;)) {
+                    	
+<span class="nc" id="L123">                	Elements hrefs = document.getElementsByTag(&quot;a&quot;);</span>
+<span class="nc bnc" id="L124" title="All 2 branches missed.">                	for(Element href : hrefs) {</span>
+<span class="nc" id="L125">                		String extant = href.attr(&quot;href&quot;);</span>
+<span class="nc" id="L126">                		href.attr(&quot;href&quot;, OUTPUT_NAME + &quot;.&quot; + extant);</span>
+<span class="nc" id="L127">                	}</span>
+<span class="nc" id="L128">                    sink.rawText(document.html());</span>
+					/*
+                	if(!styleDone) {
+                        addElements(sink, document.head().getElementsByTag(&quot;link&quot;));
+                        addElements(sink, document.head().getElementsByTag(&quot;script&quot;));
+                        styleDone = true;
+                	}
+                    addElements(sink, document.body().children());
+                    */
+                	
+<span class="nc" id="L138">                } else {</span>
+<span class="nc" id="L139">			    	String mavenName = OUTPUT_NAME + &quot;.&quot; + report;</span>
+<span class="nc" id="L140">			    	createReport(mavenName, locale, document);</span>
+                }
+			}
+<span class="nc" id="L143">            sinkEndReport(sink);</span>
+			
+<span class="nc" id="L145">			copyResources(&quot;css&quot;, &quot;images&quot;, &quot;javascript&quot;);</span>
+<span class="nc" id="L146">		} catch (IOException e) {</span>
+<span class="nc" id="L147">			getLog().error(e);</span>
+<span class="nc" id="L148">			throw new MavenReportException(&quot;Exception generating &quot; + getBundle( locale ).getString( &quot;report.fitnesse.name&quot; ), e);</span>
+<span class="nc" id="L149">		}</span>
+<span class="nc" id="L150">	}</span>
+	
+	private boolean testTdElements(List&lt;Element&gt; tds, String... expected) {
+<span class="nc bnc" id="L153" title="All 2 branches missed.">		if(tds.size() &lt; expected.length) {</span>
+<span class="nc" id="L154">			return false;</span>
+		}
+<span class="nc bnc" id="L156" title="All 2 branches missed.">		for(int i = 0 ; i &lt; expected.length ; i++) {</span>
+<span class="nc bnc" id="L157" title="All 2 branches missed.">			if(!expected[i].equalsIgnoreCase(tds.get(i).text())) {</span>
+<span class="nc" id="L158">				return false;</span>
+			}
+		}
+<span class="nc" id="L161">		return true;</span>
+	}
+	
+	@SuppressWarnings(&quot;unused&quot;)
+	private void addElements(Sink sink, List&lt;Element&gt; elements) {
+<span class="nc bnc" id="L166" title="All 2 branches missed.">		for(Element element : elements) {</span>
+<span class="nc" id="L167">            sink.rawText(element.html());</span>
+		}
+<span class="nc" id="L169">	}</span>
+	
+	private void createReport(String reportName, Locale locale, Document document) {
+<span class="nc" id="L172">        SinkFactory factory = getSinkFactory(); </span>
+<span class="nc" id="L173">        Sink sink = factory.createSink(getReportOutputDirectory(), reportName);</span>
+<span class="nc" id="L174">        sinkBeginReport(sink, getBundle( locale ));</span>
+<span class="nc" id="L175">        sink.rawText(document.html());</span>
+        //addElements(sink, document.head().getElementsByTag(&quot;link&quot;));
+		//addElements(sink, document.head().getElementsByTag(&quot;script&quot;));
+		//addElements(sink, document.body().children());
+<span class="nc" id="L179">        sinkEndReport(sink);</span>
+<span class="nc" id="L180">        sink.close();</span>
+<span class="nc" id="L181">	}</span>
+	
+	@SuppressWarnings(&quot;unused&quot;)
+	private String html(String reportName) throws IOException {
+<span class="nc" id="L185">		Reader reader = null;</span>
+        try {
+<span class="nc" id="L187">			reader = new FileReader(new File(this.reportsDir, reportName));</span>
+<span class="nc" id="L188">			return IOUtils.toString(reader);</span>
+		} finally {
+<span class="nc" id="L190">			IOUtils.closeQuietly(reader);</span>
+		}
+	}
+	
+	private void copyResources(String... resources) throws IOException {
+<span class="nc bnc" id="L195" title="All 2 branches missed.">		for(String resource : resources) {</span>
+<span class="nc" id="L196">			FileUtils.copyDirectory(new File(this.reportsDir, resource), new File(getReportOutputDirectory(), resource));</span>
+		}
+<span class="nc" id="L198">	}</span>
+	
+	private void sinkBeginReport( Sink sink, ResourceBundle bundle ) {
+<span class="nc" id="L201">        sink.head();</span>
+<span class="nc" id="L202">        String title = bundle.getString( &quot;report.fitnesse.name&quot; );</span>
+<span class="nc" id="L203">        sink.title();</span>
+<span class="nc" id="L204">        sink.text( title );</span>
+<span class="nc" id="L205">        sink.title_();</span>
+<span class="nc" id="L206">        sink.head_();</span>
+<span class="nc" id="L207">        sink.body();</span>
+<span class="nc" id="L208">        sink.section1();</span>
+<span class="nc" id="L209">	}</span>
+	
+    private void sinkEndReport( Sink sink ) {
+<span class="nc" id="L212">        sink.section1_();</span>
+<span class="nc" id="L213">        sink.body_();</span>
+<span class="nc" id="L214">        sink.flush();</span>
+<span class="nc" id="L215">        sink.close();</span>
+<span class="nc" id="L216">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.6.0.201210061924</span></div></body></html>

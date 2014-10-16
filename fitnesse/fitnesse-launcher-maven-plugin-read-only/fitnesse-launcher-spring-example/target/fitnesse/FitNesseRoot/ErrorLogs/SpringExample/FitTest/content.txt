@@ -1,0 +1,16 @@
+!3 !-fit:fit.FitServer-!
+|'''Date: '''| 3:08:37 AM (BST) on Thursday, October 16, 2014 |
+|'''Test Page: '''|.SpringExample.FitTest|
+|'''Command: '''| !-java -cp fitnesse.jar:/home/adminuser/java/test/fitnesse/fitnesse-launcher-maven-plugin-read-only/fitnesse-launcher-spring-example/target/test-classes:/home/adminuser/java/test/fitnesse/fitnesse-launcher-maven-plugin-read-only/fitnesse-launcher-spring-example/target/classes:/home/adminuser/.m2/repository/org/fitnesse/fitnesse/20130530/fitnesse-20130530.jar:/home/adminuser/.m2/repository/org/htmlparser/htmlparser/2.1/htmlparser-2.1.jar:/home/adminuser/.m2/repository/org/htmlparser/htmllexer/2.1/htmllexer-2.1.jar:/home/adminuser/.m2/repository/org/apache/velocity/velocity/1.7/velocity-1.7.jar:/home/adminuser/.m2/repository/commons-collections/commons-collections/3.2.1/commons-collections-3.2.1.jar:/home/adminuser/.m2/repository/commons-lang/commons-lang/2.4/commons-lang-2.4.jar:/home/adminuser/.m2/repository/org/json/json/20090211/json-20090211.jar:/home/adminuser/.m2/repository/com/googlecode/java-diff-utils/diffutils/1.2.1/diffutils-1.2.1.jar:/home/adminuser/.m2/repository/org/slf4j/slf4j-simple/1.7.2/slf4j-simple-1.7.2.jar:/home/adminuser/.m2/repository/org/slf4j/slf4j-api/1.7.2/slf4j-api-1.7.2.jar:/home/adminuser/.m2/repository/org/springframework/spring-context/3.2.0.RELEASE/spring-context-3.2.0.RELEASE.jar:/home/adminuser/.m2/repository/org/springframework/spring-core/3.2.0.RELEASE/spring-core-3.2.0.RELEASE.jar:/home/adminuser/.m2/repository/commons-logging/commons-logging/1.1.1/commons-logging-1.1.1.jar:/home/adminuser/.m2/repository/org/springframework/spring-aop/3.2.0.RELEASE/spring-aop-3.2.0.RELEASE.jar:/home/adminuser/.m2/repository/aopalliance/aopalliance/1.0/aopalliance-1.0.jar:/home/adminuser/.m2/repository/org/springframework/spring-expression/3.2.0.RELEASE/spring-expression-3.2.0.RELEASE.jar:/home/adminuser/.m2/repository/org/springframework/spring-beans/3.2.0.RELEASE/spring-beans-3.2.0.RELEASE.jar fit.FitServer adminuser-VirtualBox 9123 8-! |
+|'''Exit code: '''| 0 |
+|'''Time elapsed: '''| 1.477 seconds |
+
+----
+'''Standard Error:'''
+{{{ Oct 16, 2014 3:08:36 AM org.springframework.beans.factory.xml.XmlBeanDefinitionReader loadBeanDefinitions
+INFO: Loading XML bean definitions from file [/home/adminuser/java/test/fitnesse/fitnesse-launcher-maven-plugin-read-only/fitnesse-launcher-spring-example/target/classes/META-INF/spring/context.xml]
+Oct 16, 2014 3:08:36 AM org.springframework.context.support.AbstractApplicationContext prepareRefresh
+INFO: Refreshing org.springframework.context.support.GenericXmlApplicationContext@1edc073: startup date [Thu Oct 16 03:08:36 BST 2014]; root of context hierarchy
+Oct 16, 2014 3:08:37 AM org.springframework.beans.factory.support.DefaultListableBeanFactory preInstantiateSingletons
+INFO: Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@dc67e: defining beans [buyMilk1,buyMilk2]; root of factory hierarchy
+ }}}

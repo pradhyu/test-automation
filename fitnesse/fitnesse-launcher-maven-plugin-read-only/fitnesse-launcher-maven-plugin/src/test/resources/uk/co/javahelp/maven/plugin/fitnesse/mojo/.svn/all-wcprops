@@ -1,0 +1,83 @@
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/!svn/ver/434/trunk/fitnesse-launcher-maven-plugin/src/test/resources/uk/co/javahelp/maven/plugin/fitnesse/mojo
+END
+summary.xml
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/svn/!svn/ver/434/trunk/fitnesse-launcher-maven-plugin/src/test/resources/uk/co/javahelp/maven/plugin/fitnesse/mojo/summary.xml
+END
+verify-no-tests.xml
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/svn/!svn/ver/434/trunk/fitnesse-launcher-maven-plugin/src/test/resources/uk/co/javahelp/maven/plugin/fitnesse/mojo/verify-no-tests.xml
+END
+exec-output.log
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/svn/!svn/ver/336/trunk/fitnesse-launcher-maven-plugin/src/test/resources/uk/co/javahelp/maven/plugin/fitnesse/mojo/exec-output.log
+END
+setup-clean-mojo-config.xml
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/svn/!svn/ver/396/trunk/fitnesse-launcher-maven-plugin/src/test/resources/uk/co/javahelp/maven/plugin/fitnesse/mojo/setup-clean-mojo-config.xml
+END
+unpack-mojo-config.xml
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/svn/!svn/ver/404/trunk/fitnesse-launcher-maven-plugin/src/test/resources/uk/co/javahelp/maven/plugin/fitnesse/mojo/unpack-mojo-config.xml
+END
+verify-bad-xml.xml
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/svn/!svn/ver/38/trunk/fitnesse-launcher-maven-plugin/src/test/resources/uk/co/javahelp/maven/plugin/fitnesse/mojo/verify-bad-xml.xml
+END
+teardown-clean-mojo-config.xml
+K 25
+svn:wc:ra_dav:version-url
+V 145
+/svn/!svn/ver/87/trunk/fitnesse-launcher-maven-plugin/src/test/resources/uk/co/javahelp/maven/plugin/fitnesse/mojo/teardown-clean-mojo-config.xml
+END
+verify-failure.xml
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/svn/!svn/ver/434/trunk/fitnesse-launcher-maven-plugin/src/test/resources/uk/co/javahelp/maven/plugin/fitnesse/mojo/verify-failure.xml
+END
+verify-success.xml
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/svn/!svn/ver/434/trunk/fitnesse-launcher-maven-plugin/src/test/resources/uk/co/javahelp/maven/plugin/fitnesse/mojo/verify-success.xml
+END
+ExampleFitNesseTestSuite.html
+K 25
+svn:wc:ra_dav:version-url
+V 145
+/svn/!svn/ver/386/trunk/fitnesse-launcher-maven-plugin/src/test/resources/uk/co/javahelp/maven/plugin/fitnesse/mojo/ExampleFitNesseTestSuite.html
+END
+verify-not-failsafe.xml
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/svn/!svn/ver/434/trunk/fitnesse-launcher-maven-plugin/src/test/resources/uk/co/javahelp/maven/plugin/fitnesse/mojo/verify-not-failsafe.xml
+END
+pom.xml
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/!svn/ver/23/trunk/fitnesse-launcher-maven-plugin/src/test/resources/uk/co/javahelp/maven/plugin/fitnesse/mojo/pom.xml
+END
+antrun-mojo-config.xml
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/svn/!svn/ver/404/trunk/fitnesse-launcher-maven-plugin/src/test/resources/uk/co/javahelp/maven/plugin/fitnesse/mojo/antrun-mojo-config.xml
+END

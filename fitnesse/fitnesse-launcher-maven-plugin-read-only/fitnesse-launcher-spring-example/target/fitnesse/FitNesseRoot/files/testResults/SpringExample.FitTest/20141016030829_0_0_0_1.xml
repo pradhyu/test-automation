@@ -1,0 +1,110 @@
+<?xml version="1.0"?>
+<testResults>
+  <FitNesseVersion>v20130530</FitNesseVersion>
+  <rootPath>FitTest</rootPath>
+    <result>
+    <counts>
+      <right>0</right>
+      <wrong>0</wrong>
+      <ignores>0</ignores>
+      <exceptions>1</exceptions>
+    </counts>
+    <runTimeInMillis>4</runTimeInMillis>
+    <content>&lt;div class="toc1"&gt;
+	&lt;div class="contents"&gt;
+		&lt;b&gt;Contents:&lt;/b&gt;
+		&lt;ul/&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+&lt;br/&gt;&lt;br/&gt;&lt;div class="collapsible closed"&gt;&lt;ul&gt;&lt;li&gt;&lt;a href='#' class='expandall'&gt;Expand All&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href='#' class='collapseall'&gt;Collapse All&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;
+	&lt;p class="title"&gt;&lt;b&gt;Variables Defined&lt;/b&gt;&lt;/p&gt;
+	&lt;div&gt;&lt;span class="meta"&gt;variable defined: TEST_SYSTEM=fit&lt;/span&gt;
+&lt;br/&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;br/&gt;&lt;br/&gt;&lt;div class="collapsible closed"&gt;&lt;ul&gt;&lt;li&gt;&lt;a href='#' class='expandall'&gt;Expand All&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href='#' class='collapseall'&gt;Collapse All&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;
+	&lt;p class="title"&gt;&lt;b&gt;Classpath&lt;/b&gt;&lt;/p&gt;
+	&lt;div&gt;&lt;br/&gt;&lt;span class="meta"&gt;classpath: /home/adminuser/java/test/fitnesse/fitnesse-launcher-maven-plugin-read-only/fitnesse-launcher-spring-example/target/test-classes&lt;/span&gt;&lt;br/&gt;&lt;span class="meta"&gt;classpath: /home/adminuser/java/test/fitnesse/fitnesse-launcher-maven-plugin-read-only/fitnesse-launcher-spring-example/target/classes&lt;/span&gt;&lt;br/&gt;&lt;span class="meta"&gt;classpath: /home/adminuser/.m2/repository/org/fitnesse/fitnesse/20130530/fitnesse-20130530.jar&lt;/span&gt;&lt;br/&gt;&lt;span class="meta"&gt;classpath: /home/adminuser/.m2/repository/org/htmlparser/htmlparser/2.1/htmlparser-2.1.jar&lt;/span&gt;&lt;br/&gt;&lt;span class="meta"&gt;classpath: /home/adminuser/.m2/repository/org/htmlparser/htmllexer/2.1/htmllexer-2.1.jar&lt;/span&gt;&lt;br/&gt;&lt;span class="meta"&gt;classpath: /home/adminuser/.m2/repository/org/apache/velocity/velocity/1.7/velocity-1.7.jar&lt;/span&gt;&lt;br/&gt;&lt;span class="meta"&gt;classpath: /home/adminuser/.m2/repository/commons-collections/commons-collections/3.2.1/commons-collections-3.2.1.jar&lt;/span&gt;&lt;br/&gt;&lt;span class="meta"&gt;classpath: /home/adminuser/.m2/repository/commons-lang/commons-lang/2.4/commons-lang-2.4.jar&lt;/span&gt;&lt;br/&gt;&lt;span class="meta"&gt;classpath: /home/adminuser/.m2/repository/org/json/json/20090211/json-20090211.jar&lt;/span&gt;&lt;br/&gt;&lt;span class="meta"&gt;classpath: /home/adminuser/.m2/repository/com/googlecode/java-diff-utils/diffutils/1.2.1/diffutils-1.2.1.jar&lt;/span&gt;&lt;br/&gt;&lt;span class="meta"&gt;classpath: /home/adminuser/.m2/repository/org/slf4j/slf4j-simple/1.7.2/slf4j-simple-1.7.2.jar&lt;/span&gt;&lt;br/&gt;&lt;span class="meta"&gt;classpath: /home/adminuser/.m2/repository/org/slf4j/slf4j-api/1.7.2/slf4j-api-1.7.2.jar&lt;/span&gt;&lt;br/&gt;&lt;span class="meta"&gt;classpath: /home/adminuser/.m2/repository/org/springframework/spring-context/3.2.0.RELEASE/spring-context-3.2.0.RELEASE.jar&lt;/span&gt;&lt;br/&gt;&lt;span class="meta"&gt;classpath: /home/adminuser/.m2/repository/org/springframework/spring-core/3.2.0.RELEASE/spring-core-3.2.0.RELEASE.jar&lt;/span&gt;&lt;br/&gt;&lt;span class="meta"&gt;classpath: /home/adminuser/.m2/repository/commons-logging/commons-logging/1.1.1/commons-logging-1.1.1.jar&lt;/span&gt;&lt;br/&gt;&lt;span class="meta"&gt;classpath: /home/adminuser/.m2/repository/org/springframework/spring-aop/3.2.0.RELEASE/spring-aop-3.2.0.RELEASE.jar&lt;/span&gt;&lt;br/&gt;&lt;span class="meta"&gt;classpath: /home/adminuser/.m2/repository/aopalliance/aopalliance/1.0/aopalliance-1.0.jar&lt;/span&gt;&lt;br/&gt;&lt;span class="meta"&gt;classpath: /home/adminuser/.m2/repository/org/springframework/spring-expression/3.2.0.RELEASE/spring-expression-3.2.0.RELEASE.jar&lt;/span&gt;&lt;br/&gt;&lt;span class="meta"&gt;classpath: /home/adminuser/.m2/repository/org/springframework/spring-beans/3.2.0.RELEASE/spring-beans-3.2.0.RELEASE.jar&lt;/span&gt;&lt;br/&gt;&lt;br/&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;&lt;table&gt;
+	&lt;tr&gt;
+		&lt;td colspan="3" class="error"&gt;uk.co.javahelp.fitnesse.fit.SpringColumnFixture&lt;hr&gt;&lt;pre&gt;&lt;div class="fit_stacktrace"&gt;java.lang.ExceptionInInitializerError
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:171)
+	at fit.FixtureLoader.loadFixtureClass(FixtureLoader.java:67)
+	at fit.FixtureLoader.instantiateFixture(FixtureLoader.java:60)
+	at fit.FixtureLoader.instantiateFirstValidFixtureClass(FixtureLoader.java:84)
+	at fit.FixtureLoader.disgraceThenLoad(FixtureLoader.java:44)
+	at fit.Fixture.loadFixture(Fixture.java:141)
+	at fit.Fixture.getLinkedFixtureWithArgs(Fixture.java:133)
+	at fit.Fixture.doTables(Fixture.java:78)
+	at fit.FitServer.process(FitServer.java:81)
+	at fit.FitServer.run(FitServer.java:56)
+	at fit.FitServer.main(FitServer.java:41)
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'buyMilk1' defined in file [/home/adminuser/java/test/fitnesse/fitnesse-launcher-maven-plugin-read-only/fitnesse-launcher-spring-example/target/classes/META-INF/spring/context.xml]: Initialization of bean failed; nested exception is org.springframework.beans.TypeMismatchException: Failed to convert property value of type 'java.lang.String' to required type 'int' for property 'cashInWallet'; nested exception is java.lang.NumberFormatException: For input string: ""
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:532)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:461)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:295)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:223)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:292)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:194)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:607)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:932)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:479)
+	at org.springframework.context.support.GenericXmlApplicationContext.&lt;init&gt;(GenericXmlApplicationContext.java:71)
+	at uk.co.javahelp.fitnesse.fit.SpringColumnFixture.&lt;clinit&gt;(SpringColumnFixture.java:12)
+	... 12 more
+Caused by: org.springframework.beans.TypeMismatchException: Failed to convert property value of type 'java.lang.String' to required type 'int' for property 'cashInWallet'; nested exception is java.lang.NumberFormatException: For input string: ""
+	at org.springframework.beans.BeanWrapperImpl.convertIfNecessary(BeanWrapperImpl.java:470)
+	at org.springframework.beans.BeanWrapperImpl.convertForProperty(BeanWrapperImpl.java:496)
+	at org.springframework.beans.BeanWrapperImpl.convertForProperty(BeanWrapperImpl.java:490)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.convertForProperty(AbstractAutowireCapableBeanFactory.java:1437)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyPropertyValues(AbstractAutowireCapableBeanFactory.java:1396)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1132)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:522)
+	... 22 more
+Caused by: java.lang.NumberFormatException: For input string: ""
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:48)
+	at java.lang.Integer.parseInt(Integer.java:470)
+	at java.lang.Integer.valueOf(Integer.java:554)
+	at org.springframework.util.NumberUtils.parseNumber(NumberUtils.java:155)
+	at org.springframework.beans.propertyeditors.CustomNumberEditor.setAsText(CustomNumberEditor.java:115)
+	at org.springframework.beans.TypeConverterDelegate.doConvertTextValue(TypeConverterDelegate.java:452)
+	at org.springframework.beans.TypeConverterDelegate.doConvertValue(TypeConverterDelegate.java:424)
+	at org.springframework.beans.TypeConverterDelegate.convertIfNecessary(TypeConverterDelegate.java:181)
+	at org.springframework.beans.BeanWrapperImpl.convertIfNecessary(BeanWrapperImpl.java:450)
+	... 28 more
+&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;bean name&lt;/td&gt;
+		&lt;td&gt;method name&lt;/td&gt;
+		&lt;td&gt;exec?&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;buyMilk1&lt;/td&gt;
+		&lt;td&gt;goToStore&lt;/td&gt;
+		&lt;td&gt;no&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;buyMilk2&lt;/td&gt;
+		&lt;td&gt;goToStore&lt;/td&gt;
+		&lt;td&gt;yes&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+&lt;br/&gt;</content>
+    <relativePageName>FitTest</relativePageName>
+    
+    
+    
+  </result>
+  
+    <finalCounts>
+    <right>0</right>
+    <wrong>0</wrong>
+    <ignores>0</ignores>
+    <exceptions>0</exceptions>
+  </finalCounts>
+  <totalRunTimeInMillis>0</totalRunTimeInMillis>
+  
+</testResults>
+

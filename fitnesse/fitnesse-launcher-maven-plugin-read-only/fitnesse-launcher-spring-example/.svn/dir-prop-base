@@ -1,0 +1,13 @@
+K 10
+svn:ignore
+V 40
+*.settings
+target
+*.classpath
+*.project
+
+K 13
+svn:mergeinfo
+V 52
+/branches/fitnesse-launcher-spring-example-1.2.x:288
+END

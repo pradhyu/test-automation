@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="maven-antrun-" default="main"  >
+<target name="main">
+  <java fork="true" spawn="true" classname="org.apache.derby.drda.NetworkServerControl" classpathref="maven.runtime.classpath">
+    <arg value="start"/>
+    <arg value="-noSecurityManager"/>
+  </java>
+  <sleep milliseconds="1000"/>
+</target>
+</project>

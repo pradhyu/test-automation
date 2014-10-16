@@ -1,0 +1,101 @@
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/!svn/ver/451/trunk/fitnesse-launcher-maven-plugin/src/test/java/uk/co/javahelp/maven/plugin/fitnesse/mojo
+END
+WikiMojoTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/svn/!svn/ver/451/trunk/fitnesse-launcher-maven-plugin/src/test/java/uk/co/javahelp/maven/plugin/fitnesse/mojo/WikiMojoTest.java
+END
+VerifyMojoTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/svn/!svn/ver/434/trunk/fitnesse-launcher-maven-plugin/src/test/java/uk/co/javahelp/maven/plugin/fitnesse/mojo/VerifyMojoTest.java
+END
+ExportPropertiesTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/svn/!svn/ver/394/trunk/fitnesse-launcher-maven-plugin/src/test/java/uk/co/javahelp/maven/plugin/fitnesse/mojo/ExportPropertiesTest.java
+END
+ShutdownMojoTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svn/!svn/ver/282/trunk/fitnesse-launcher-maven-plugin/src/test/java/uk/co/javahelp/maven/plugin/fitnesse/mojo/ShutdownMojoTest.java
+END
+ResolutionRequestForArtifact.java
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/svn/!svn/ver/281/trunk/fitnesse-launcher-maven-plugin/src/test/java/uk/co/javahelp/maven/plugin/fitnesse/mojo/ResolutionRequestForArtifact.java
+END
+CalcWikiFormatClasspathTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/svn/!svn/ver/391/trunk/fitnesse-launcher-maven-plugin/src/test/java/uk/co/javahelp/maven/plugin/fitnesse/mojo/CalcWikiFormatClasspathTest.java
+END
+TestFitNesseMojo.java
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svn/!svn/ver/399/trunk/fitnesse-launcher-maven-plugin/src/test/java/uk/co/javahelp/maven/plugin/fitnesse/mojo/TestFitNesseMojo.java
+END
+FitNesseMojoTestHelper.java
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/svn/!svn/ver/403/trunk/fitnesse-launcher-maven-plugin/src/test/java/uk/co/javahelp/maven/plugin/fitnesse/mojo/FitNesseMojoTestHelper.java
+END
+FitNesseMojoTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svn/!svn/ver/431/trunk/fitnesse-launcher-maven-plugin/src/test/java/uk/co/javahelp/maven/plugin/fitnesse/mojo/FitNesseMojoTest.java
+END
+TearDownMojoTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svn/!svn/ver/384/trunk/fitnesse-launcher-maven-plugin/src/test/java/uk/co/javahelp/maven/plugin/fitnesse/mojo/TearDownMojoTest.java
+END
+SetupsMojoTestHelper.java
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/svn/!svn/ver/404/trunk/fitnesse-launcher-maven-plugin/src/test/java/uk/co/javahelp/maven/plugin/fitnesse/mojo/SetupsMojoTestHelper.java
+END
+PrintStreamLogger.java
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svn/!svn/ver/29/trunk/fitnesse-launcher-maven-plugin/src/test/java/uk/co/javahelp/maven/plugin/fitnesse/mojo/PrintStreamLogger.java
+END
+UrlEndsWith.java
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/svn/!svn/ver/92/trunk/fitnesse-launcher-maven-plugin/src/test/java/uk/co/javahelp/maven/plugin/fitnesse/mojo/UrlEndsWith.java
+END
+LaunchTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/svn/!svn/ver/408/trunk/fitnesse-launcher-maven-plugin/src/test/java/uk/co/javahelp/maven/plugin/fitnesse/mojo/LaunchTest.java
+END
+RunTestsMojoTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svn/!svn/ver/434/trunk/fitnesse-launcher-maven-plugin/src/test/java/uk/co/javahelp/maven/plugin/fitnesse/mojo/RunTestsMojoTest.java
+END
+SetUpMojoTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/svn/!svn/ver/431/trunk/fitnesse-launcher-maven-plugin/src/test/java/uk/co/javahelp/maven/plugin/fitnesse/mojo/SetUpMojoTest.java
+END

@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/!svn/ver/453/trunk/fitnesse-launcher-maven-plugin/src/main/java/uk/co/javahelp/maven/plugin/fitnesse/reporting
+END
+HtmlFilter.java
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/svn/!svn/ver/451/trunk/fitnesse-launcher-maven-plugin/src/main/java/uk/co/javahelp/maven/plugin/fitnesse/reporting/HtmlFilter.java
+END
+FitNesseHtmlReport.java
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/svn/!svn/ver/453/trunk/fitnesse-launcher-maven-plugin/src/main/java/uk/co/javahelp/maven/plugin/fitnesse/reporting/FitNesseHtmlReport.java
+END
+FitNesseSurefireReport.java
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/svn/!svn/ver/453/trunk/fitnesse-launcher-maven-plugin/src/main/java/uk/co/javahelp/maven/plugin/fitnesse/reporting/FitNesseSurefireReport.java
+END

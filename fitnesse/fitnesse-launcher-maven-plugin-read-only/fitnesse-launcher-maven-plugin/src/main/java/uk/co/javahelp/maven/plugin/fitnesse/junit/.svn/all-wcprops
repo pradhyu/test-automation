@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/!svn/ver/408/trunk/fitnesse-launcher-maven-plugin/src/main/java/uk/co/javahelp/maven/plugin/fitnesse/junit
+END
+package-info.java
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/svn/!svn/ver/408/trunk/fitnesse-launcher-maven-plugin/src/main/java/uk/co/javahelp/maven/plugin/fitnesse/junit/package-info.java
+END
+TestHelper.java
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/svn/!svn/ver/408/trunk/fitnesse-launcher-maven-plugin/src/main/java/uk/co/javahelp/maven/plugin/fitnesse/junit/TestHelper.java
+END

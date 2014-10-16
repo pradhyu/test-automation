@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>DelegatingResultsListener.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="right"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">FitNesse Launcher Maven Plugin</a> &gt; <a href="index.html" class="el_package">uk.co.javahelp.maven.plugin.fitnesse.responders.run</a> &gt; <span class="el_source">DelegatingResultsListener.java</span></div><h1>DelegatingResultsListener.java</h1><pre class="source lang-java linenums">package uk.co.javahelp.maven.plugin.fitnesse.responders.run;
+
+import java.io.IOException;
+
+import util.TimeMeasurement;
+import fitnesse.responders.run.ResultsListener;
+import fitnesse.testsystems.CompositeExecutionLog;
+import fitnesse.testsystems.TestPage;
+import fitnesse.testsystems.TestSummary;
+import fitnesse.testsystems.TestSystem;
+import fitnesse.testsystems.slim.results.ExceptionResult;
+import fitnesse.testsystems.slim.results.TestResult;
+import fitnesse.testsystems.slim.tables.Assertion;
+
+public class DelegatingResultsListener implements ResultsListener {
+
+    private final ResultsListener[] delegates;
+
+<span class="nc" id="L19">    public DelegatingResultsListener(final ResultsListener... delegates) {</span>
+<span class="nc" id="L20">        this.delegates = delegates;</span>
+<span class="nc" id="L21">    }</span>
+
+	@Override
+    public final void allTestingComplete(final TimeMeasurement totalTimeMeasurement)
+            throws IOException {
+<span class="nc bnc" id="L26" title="All 2 branches missed.">        for(ResultsListener delegate : this.delegates) {</span>
+<span class="nc" id="L27">            delegate.allTestingComplete(totalTimeMeasurement);</span>
+        }
+<span class="nc" id="L29">    }</span>
+
+	@Override
+    public final void setExecutionLogAndTrackingId(final String stopResponderId, final CompositeExecutionLog log) {
+<span class="nc bnc" id="L33" title="All 2 branches missed.">        for(ResultsListener delegate : this.delegates) {</span>
+<span class="nc" id="L34">            delegate.setExecutionLogAndTrackingId(stopResponderId, log);</span>
+        }
+<span class="nc" id="L36">    }</span>
+
+	@Override
+    public final void announceNumberTestsToRun(final int testsToRun) {
+<span class="nc bnc" id="L40" title="All 2 branches missed.">        for(ResultsListener delegate : this.delegates) {</span>
+<span class="nc" id="L41">            delegate.announceNumberTestsToRun(testsToRun);</span>
+        }
+<span class="nc" id="L43">    }</span>
+
+	@Override
+    public final void testSystemStarted(final TestSystem testSystem, final String testSystemName, final String testRunner) {
+<span class="nc bnc" id="L47" title="All 2 branches missed.">        for(ResultsListener delegate : this.delegates) {</span>
+<span class="nc" id="L48">            delegate.testSystemStarted(testSystem, testSystemName, testRunner);</span>
+        }
+<span class="nc" id="L50">    }</span>
+
+	@Override
+    public final void newTestStarted(final TestPage test, final TimeMeasurement timeMeasurement)
+            throws IOException {
+<span class="nc bnc" id="L55" title="All 2 branches missed.">        for(ResultsListener delegate : this.delegates) {</span>
+<span class="nc" id="L56">            delegate.newTestStarted(test, timeMeasurement);</span>
+        }
+<span class="nc" id="L58">    }</span>
+
+	@Override
+    public final void testOutputChunk(final String output) throws IOException {
+<span class="nc bnc" id="L62" title="All 2 branches missed.">        for(ResultsListener delegate : this.delegates) {</span>
+<span class="nc" id="L63">            delegate.testOutputChunk(output);</span>
+        }
+<span class="nc" id="L65">    }</span>
+
+	@Override
+	public void testAssertionVerified(final Assertion assertion, final TestResult testResult) {
+<span class="nc bnc" id="L69" title="All 2 branches missed.">        for(ResultsListener delegate : this.delegates) {</span>
+<span class="nc" id="L70">            delegate.testAssertionVerified(assertion, testResult);</span>
+        }
+<span class="nc" id="L72">	}</span>
+
+	@Override
+	public void testExceptionOccurred(final Assertion assertion, final ExceptionResult exceptionResult) {
+<span class="nc bnc" id="L76" title="All 2 branches missed.">        for(ResultsListener delegate : this.delegates) {</span>
+<span class="nc" id="L77">            delegate.testExceptionOccurred(assertion, exceptionResult);</span>
+        }
+<span class="nc" id="L79">	}</span>
+
+	@Override
+    public final void testComplete(final TestPage test, final TestSummary testSummary, final TimeMeasurement timeMeasurement)
+            throws IOException {
+<span class="nc bnc" id="L84" title="All 2 branches missed.">        for(ResultsListener delegate : this.delegates) {</span>
+<span class="nc" id="L85">            delegate.testComplete(test, testSummary, timeMeasurement);</span>
+        }
+<span class="nc" id="L87">    }</span>
+
+	@Override
+    public final void errorOccured() {
+<span class="nc bnc" id="L91" title="All 2 branches missed.">        for(ResultsListener delegate : this.delegates) {</span>
+<span class="nc" id="L92">            delegate.errorOccured();</span>
+        }
+<span class="nc" id="L94">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.6.0.201210061924</span></div></body></html>

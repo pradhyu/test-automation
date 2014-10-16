@@ -1,0 +1,13 @@
+K 10
+svn:ignore
+V 40
+*.settings
+target
+*.classpath
+*.project
+
+K 13
+svn:mergeinfo
+V 50
+/branches/fitnesse-launcher-java-example-1.2.x:288
+END

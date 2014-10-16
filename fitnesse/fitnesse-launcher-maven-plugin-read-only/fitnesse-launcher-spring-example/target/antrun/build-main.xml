@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="maven-antrun-" default="main"  >
+<target name="main">
+  <move todir="/home/adminuser/java/test/fitnesse/fitnesse-launcher-maven-plugin-read-only/fitnesse-launcher-spring-example/target/fitnesse" file="/home/adminuser/java/test/fitnesse/fitnesse-launcher-maven-plugin-read-only/fitnesse-launcher-spring-example/target/fitnesse/Resources/FitNesseRoot" overwrite="false" failonerror="false"/>
+  <move todir="/home/adminuser/java/test/fitnesse/fitnesse-launcher-maven-plugin-read-only/fitnesse-launcher-spring-example/target/fitnesse/FitNesseRoot/files" overwrite="false" failonerror="false">
+    <fileset dir="/home/adminuser/java/test/fitnesse/fitnesse-launcher-maven-plugin-read-only/fitnesse-launcher-spring-example/target/fitnesse/FitNesseRoot/files/fitnesse/resources">
+      <include name="**/*"/>
+    </fileset>
+  </move>
+</target>
+</project>

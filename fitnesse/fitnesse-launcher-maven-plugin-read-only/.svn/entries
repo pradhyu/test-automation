@@ -1,0 +1,80 @@
+10
+
+dir
+453
+http://fitnesse-launcher-maven-plugin.googlecode.com/svn/trunk
+http://fitnesse-launcher-maven-plugin.googlecode.com/svn
+
+
+
+2014-10-10T23:17:36.926510Z
+453
+stewart@javahelp.co.uk
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+b9679af3-47a1-7dbf-88ed-62cb0186c6c5
+
+fitnesse-launcher-maven-plugin
+dir
+
+fitnesse-launcher-webapp-example
+dir
+
+fitnesse-launcher-sql-example
+dir
+
+fitnesse-launcher-java-example
+dir
+
+src
+dir
+
+fitnesse-launcher-spring-example
+dir
+
+pom.xml
+file
+
+
+
+
+2014-10-16T00:52:42.973689Z
+d6c5162577f937d286cf0939f5276d90
+2014-07-17T16:40:44.766058Z
+434
+stewart@javahelp.co.uk
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+10513
+
